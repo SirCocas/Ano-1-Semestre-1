@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MDC",
+            "request": "launch",
+            "mainClass": "MDC",
+            "projectName": "Exercicios_1a0e3ae8"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Goof2",
+            "request": "launch",
+            "mainClass": "Goof2",
+            "projectName": "Exercicios_1a0e3ae8"
+        }
+    ]
+}

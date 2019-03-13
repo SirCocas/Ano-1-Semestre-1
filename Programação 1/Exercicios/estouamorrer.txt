@@ -1,0 +1,4 @@
+Nota na Epoca Normal: 20
+Nota na Epoca de Recurso: 20
+Nota final: 20
+
