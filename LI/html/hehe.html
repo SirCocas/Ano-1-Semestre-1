@@ -1,0 +1,68 @@
+<html>
+
+  <head>
+    <script type="text/javascript" src="labi.js">
+
+
+    </script>
+    <p>
+      <script>
+        var op = "+";
+
+        function operacao() {
+          var elemento = event.target;
+          var elementoSeleccionado = elemento.options[elemento.selectedIndex];
+          op = elementoSeleccionado.value;
+
+
+        }
+        document.write("I like turtles");
+        alert("Do you love turtles?");
+        var s = "5";
+        console.log(s + 9);
+        /*for (var i=0;i<16;i++)
+        {
+        	document.write("uma-string" - 2);
+        	document.write("<br/>");
+        }
+        document.write("Batman");*/
+        function conta() {
+          var x = document.getElementById("op1");
+          var y = document.getElementById("op2");
+          x = parseFloat(x.value);
+          y = parseFloat(y.value);
+          document.getElementById("res").value = (x + y);
+          
+          
+
+        }
+
+      </script>
+  </head>
+
+  <body>
+    <p>
+      oh olá
+    </p>
+    <p>
+      <input id="op1" value="2" />
+      <span id="op-view">+</span>
+      <input id="op2" value="3" />
+      <input id="res" value="" /> <br/>
+    </p>
+
+
+
+    <select onchange="operacao()">
+		<option value="+ "> Soma </option>
+		<option value="- "> Subtração </option>
+	</select>
+
+    <button  onclick="conta() "> Calcular</button>
+
+
+
+  </body>
+
+</html>
+

@@ -1,0 +1,138 @@
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <title>LABI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Bootstrap JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+  <script>
+    function desenhaGrafico() {
+      $("#grafico-linhas").highcharts({
+        title: {
+          text: "Média de temperaturas",
+        },
+        xAxis: {
+          categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+        },
+        series: [{
+          name: "Lisboa",
+          data: [7.0,
+            6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6
+          ]
+        }],
+      });
+    };
+    function DesenhaMapa() {
+      var map = new L.Map("oMeuMapa", { center: [40.633258, -8.659097], zoom: 15 });
+      var osmUrl = "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+      var osmAttrib = "Map data  OpenStreetMap contributors";
+      var osm = new L.TileLayer(osmUrl, { attribution: osmAttrib });
+      map.addLayer(osm);
+    };
+    function mostraCoordenadas(e) {
+      var s = document.getElementById("coordenadas");
+      s.innerHTML = "Latitude, Longitude = " + e.latlng.lat + ", " + e.latlng.lng;
+    };
+    function MaisPontos(){
+    var
+      pontos = [
+        L.marker([40.633258, -8.659097]),
+        L.marker([40.642729, -8.747899])
+      ];
+    for
+    (i in pontos) {
+      pontos[i].addTo(map);
+    }
+  };
+
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">LABI</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="#">TópicoA</a>
+          </li>
+          <li>
+            <a href="#">TópicoB</a>
+          </li>
+          <li class="active">
+            <a href="#">Pop-Ups</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#oMeuPopup">Lançar popup</button>
+            <div id="oMeuPopup" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      &times;
+                    </button>
+                    <h4 class="modal-title">Título</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Conteúdo</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 id="topicoPopUp">Teste para Pop Up</h2>
+
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              TópicoC
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Opção1</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">Opção2</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active">
+            <a href="#">Default</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  </div>
+  <div id="oMeuMapa" style="width: 500px; height: 400px"></div>
+  <script type="text/javascript" src="map.js"></script>
+  <div id="grafico-linhas" style="width: 400px; height: 300px;"></div>
+  <button class="btn btn-primary" onclick="desenhaGrafico()">Grafico de Linhas</button>
+  <button class="btn btn-primary" onclick="DesenhaMapa()">Mapa</button>
+  <div>
+    <span id="coordenadas">
+      <script>map.on("click", mostraCoordenadas(e));</script>
+    </span>
+  </div>
+  <button class="btn btn-primary" onclick="MaisPontos()">Adiciona pontos!</button>
+
+</body>
+
+</html>
